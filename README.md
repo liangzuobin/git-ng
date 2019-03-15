@@ -27,7 +27,7 @@ Flags:
 
 ~~~
 ➜  git-ng master ✗ git ng -r main
-➜  git-ng master ✓
+➜  git-ng master ✓ git log
 commit ddf2556a514521af5fb166d8358e6b20fa18d634 (HEAD -> master)
 Author: liangzuobin <liangzuobin123@gmail.com>
 Date:   Fri Mar 15 09:40:40 2019 +0800
