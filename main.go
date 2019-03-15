@@ -20,6 +20,14 @@ func main() {
 		name = strings.Replace(name, "-", "", -1)
 	}
 
+	if err := runcommit(name, val); err != nil {
+		panic(err)
+	}
+
+	os.Exit(0)
+}
+
+func runcommit(name, val string) error {
 	var prefix string
 	switch name {
 	case "f", "feat":
@@ -42,12 +50,7 @@ func main() {
 		printhelp()
 		os.Exit(1)
 	}
-
-	if err := exec.Command("git", "commit", "-m", prefix+val).Run(); err != nil {
-		panic(err)
-	}
-
-	os.Exit(0)
+	return exec.Command("git", "commit", "-m", prefix+val).Run()
 }
 
 func printhelp() {
