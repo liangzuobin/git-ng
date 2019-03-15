@@ -8,23 +8,22 @@ import (
 )
 
 func main() {
-	args := os.Args[1:]
-
-	if len(args) != 2 {
+	switch args := os.Args[1:]; len(args) {
+	case 1:
+		if name := strings.Replace(args[0], "-", "", -1); name == "h" || name == "help" {
+			printhelp()
+			os.Exit(0)
+		}
+		os.Exit(1)
+	case 2:
+		if err := runcommit(strings.Replace(args[0], "-", "", -1), args[1]); err != nil {
+			panic(err)
+		}
+		os.Exit(0)
+	default:
 		printhelp()
 		os.Exit(1)
 	}
-
-	name, val := args[0], args[1]
-	if strings.Contains(name, "-") {
-		name = strings.Replace(name, "-", "", -1)
-	}
-
-	if err := runcommit(name, val); err != nil {
-		panic(err)
-	}
-
-	os.Exit(0)
 }
 
 func runcommit(name, val string) error {
@@ -69,6 +68,6 @@ Flags:
   -t --test: Adding missing tests
   -c --chore: Changes to the build process or auxiliary tools and libraries such as documentation generation
 
-If you see the source code, you'll know I'm teasing you.`
+If you read the source code, you'll know I'm teasing you.`
 	fmt.Println(str)
 }
