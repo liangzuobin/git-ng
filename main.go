@@ -17,7 +17,8 @@ func main() {
 		os.Exit(1)
 	case 2:
 		if err := runcommit(strings.Replace(args[0], "-", "", -1), args[1]); err != nil {
-			panic(err)
+			fmt.Println(err.Error())
+			os.Exit(1)
 		}
 		os.Exit(0)
 	default:
@@ -46,8 +47,7 @@ func runcommit(name, val string) error {
 	case "c", "chore":
 		prefix = "Chore: "
 	default:
-		printhelp()
-		os.Exit(1)
+		return fmt.Errorf("unknown flag %s, use -h for help", name)
 	}
 	return exec.Command("git", "commit", "-m", prefix+val).Run()
 }
