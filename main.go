@@ -16,7 +16,7 @@ func main() {
 			os.Exit(0)
 		}
 		os.Exit(1)
-	case 2, 4, 6:
+	case 2, 4, 6, 8:
 		if err := runcommit(args); err != nil {
 			fmt.Println(err.Error())
 			os.Exit(1)
