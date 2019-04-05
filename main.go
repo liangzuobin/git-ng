@@ -11,8 +11,8 @@ import (
 func main() {
 	switch args := os.Args[1:]; len(args) {
 	case 1:
+		printhelp()
 		if name := strings.Replace(args[0], "-", "", -1); name == "h" || name == "help" {
-			printhelp()
 			os.Exit(0)
 		}
 		os.Exit(1)
