@@ -32,7 +32,7 @@ Flags:
 
 Example: (in fish shell)
 ~~~
-➜  git-ng master ✓ go run main.go -f 'more flag' -b '- body
+➜  git-ng master ✓ go ng -f 'more flag' -b '- body
                    - scope
                    - footer'
 ➜  git-ng master ✓ git log
